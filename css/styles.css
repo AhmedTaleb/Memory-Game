@@ -27,6 +27,10 @@ a {
   color: black;
   margin-right: 10px;
 }
+
+li {
+  list-style: none;
+}
 .container {
   display: flex;
   justify-content: center;
@@ -53,7 +57,7 @@ a {
 
   border: 1px solid black;
   border-radius: 5px;
-
+  cursor: pointer;
 }
 
 .icons-container {
