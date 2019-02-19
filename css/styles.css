@@ -16,11 +16,6 @@ h1{
   color: #8FBC8F;
 }
 
-img {
-  width:100%;
-  border-radius: 5px;
-}
-
 a {
   text-decoration: none;
   font-size: 30px;
@@ -64,6 +59,7 @@ li {
   border-radius: 5px;
   cursor: pointer;
   color: #ffffff;
+  font-size: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,7 +68,19 @@ li {
 }
 
 .deck .card.show {
-    font-size: 33px;
+    font-size: 25px;
+}
+
+.deck .card.open {
+  transform: rotateY(0);
+  background: #02b3e4;
+  cursor: default;
+}
+
+.deck .card.match {
+  cursor: default;
+  background: #02ccba;
+  font-size: 33px;
 }
 
 .icons-container {
