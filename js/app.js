@@ -52,6 +52,20 @@ function addMove(){
 /**
  * Restart game
  */
+const restart = document.querySelector('.restart i');
+restart.addEventListener('click',function(){
+
+    //
+    cards.forEach(card => {
+        //reset cards
+        card.innerHTML = '';
+    });
+
+    game();
+    moves=0;
+    move.innerHTML = `Moves ${moves}`;
+
+});
 
 //initial game  function
 function game(){
