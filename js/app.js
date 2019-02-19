@@ -6,7 +6,8 @@ const cardsHtml = ['<i class="fa fa-diamond"></i>','<i class="fa fa-paper-plane-
                     '<i class="fa fa-leaf"></i>','<i class="fa fa-bicycle"></i>','<i class="fa fa-bomb"></i>','<i class="fa fa-bomb"></i>'];
 
 const cards = document.querySelectorAll('.card');
-let openCards = [];
+let openCards = []; // array of open cards.
+let moves = 0;      // variable to store the number of moves a palyer made
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -39,15 +40,30 @@ for (let i = 0; i < cards.length; i++) {
 }
 }
 
+/**
+ * increment moves
+ */
+const move = document.querySelector('.moves');
+function addMove(){
+    moves++;
+    move.innerHTML = `Moves ${moves}`;
+}
 
-//initian function
+/**
+ * Restart game
+ */
+
+//initial game  function
 function game(){
+
+
 
     addShuffledCards();
     cards.forEach(card => {
 
         card.addEventListener('click',function(){
 
+            //discard open and matched cards.
             if(card.classList.length == 1){
                 //open two cards at a time
                 if(openCards.length < 2){
@@ -67,14 +83,17 @@ function game(){
                         });
 
                         openCards = [];
+                        addMove();
                     }else {
                         //cards did not match
                         setTimeout(function(){
-                            //
+                            //show cards for 500 mili seconds
                             card.classList.remove('match','open','show');
                             openCards[0].classList.remove('match','open','show');
                             openCards = [];
                             },500);
+
+                        addMove();
 
                     }
                     }
@@ -86,3 +105,4 @@ function game(){
 
 //start the game
 game();
+
