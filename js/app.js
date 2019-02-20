@@ -82,6 +82,16 @@ function gameOver(){
 
         console.log('winner');
         clearInterval(myTimer);
+        const stars = document.querySelectorAll('.stars li').length;
+        //customized alert box using sweetalert
+        swal("Congratulation! Woohoo", `Moves : ${moves} \n Time : ${minutes} munites and ${seconds} seconds \n Rating : ${stars} stars `
+            , "success", {
+            buttons: "Start New Game",
+          }).then((value) => {
+            if (value) {
+                location.reload();
+            }
+          });
     }
 
 }
@@ -110,7 +120,8 @@ function updateRating(){
  * Restart game
  */
 const restart = document.querySelector('.restart i');
-restart.addEventListener('click',function(){
+restart.addEventListener('click',restartGame);
+function restartGame(){
 
     //
     cards.forEach(card => {
@@ -127,7 +138,7 @@ restart.addEventListener('click',function(){
     minutes =0;
 
     document.querySelector('.stars').innerHTML = ratingHtml;
-});
+}
 //initial game  function
 function game(){
 
@@ -188,4 +199,3 @@ function game(){
 
 //start the game
 game();
-
