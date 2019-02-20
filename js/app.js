@@ -4,6 +4,12 @@ const cardsHtml = ['<i class="fa fa-diamond"></i>','<i class="fa fa-paper-plane-
                     '<i class="fa fa-leaf"></i>','<i class="fa fa-bicycle"></i>','<i class="fa fa-diamond"></i>',
                     '<i class="fa fa-paper-plane-o"></i>','<i class="fa fa-bolt"></i>','<i class="fa fa-cube"></i>',
                     '<i class="fa fa-leaf"></i>','<i class="fa fa-bicycle"></i>','<i class="fa fa-bomb"></i>','<i class="fa fa-bomb"></i>'];
+//stars rating to be used in restart button
+const ratingHtml = `<li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>`;
 
 const cards = document.querySelectorAll('.card');
 let openCards = []; // array of open cards.
@@ -67,27 +73,6 @@ let myTimer = setInterval(function() {
 }, 1000);
 
 /**
- * Restart game
- */
-const restart = document.querySelector('.restart i');
-restart.addEventListener('click',function(){
-
-    //
-    cards.forEach(card => {
-        //reset cards
-        card.innerHTML = '';
-        card.classList.remove('open','match','show');
-    });
-
-    game();
-    moves=0;
-    move.innerHTML = `Moves ${moves}`;
-    count =0;
-    seconds =0;
-    minutes =0;
-});
-
-/**
  * Check if the game is over : the game is over if there is a winner
  */
 function gameOver(){
@@ -121,6 +106,28 @@ function updateRating(){
     }
   }
 
+/**
+ * Restart game
+ */
+const restart = document.querySelector('.restart i');
+restart.addEventListener('click',function(){
+
+    //
+    cards.forEach(card => {
+        //reset cards
+        card.innerHTML = '';
+        card.classList.remove('open','match','show');
+    });
+
+    game();
+    moves=0;
+    move.innerHTML = `Moves ${moves}`;
+    count =0;
+    seconds =0;
+    minutes =0;
+
+    document.querySelector('.stars').innerHTML = ratingHtml;
+});
 //initial game  function
 function game(){
 
