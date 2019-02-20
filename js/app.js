@@ -8,6 +8,7 @@ const cardsHtml = ['<i class="fa fa-diamond"></i>','<i class="fa fa-paper-plane-
 const cards = document.querySelectorAll('.card');
 let openCards = []; // array of open cards.
 let moves = 0;      // variable to store the number of moves a palyer made
+let win   = 0;      // variable to count matched pairs if it is = 8 player wins the game
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -50,6 +51,22 @@ function addMove(){
 }
 
 /**
+ * start timer
+ */
+let count =0;
+let seconds =0;
+let minutes =0;
+let myTimer = setInterval(function() {
+  // body...
+  ++count;
+
+  minutes = parseInt(count/60);
+  seconds = count % 60;
+  document.querySelector('.timer').innerText= `Timer : ${minutes} : ${seconds}`;
+
+}, 1000);
+
+/**
  * Restart game
  */
 const restart = document.querySelector('.restart i');
@@ -59,13 +76,31 @@ restart.addEventListener('click',function(){
     cards.forEach(card => {
         //reset cards
         card.innerHTML = '';
+        card.classList.remove('open','match','show');
     });
 
     game();
     moves=0;
     move.innerHTML = `Moves ${moves}`;
-
+    count =0;
+    seconds =0;
+    minutes =0;
 });
+
+/**
+ * Check if the game is over : the game is over if there is a winner
+ */
+function gameOver(){
+
+    win++;
+    if(win == 8){
+
+        console.log('winner');
+        clearInterval(myTimer);
+    }
+
+}
+
 
 //initial game  function
 function game(){
@@ -73,7 +108,10 @@ function game(){
 
 
     addShuffledCards();
+
     cards.forEach(card => {
+
+        //starting timerh
 
         card.addEventListener('click',function(){
 
@@ -98,6 +136,7 @@ function game(){
 
                         openCards = [];
                         addMove();
+                        gameOver();
                     }else {
                         //cards did not match
                         setTimeout(function(){
@@ -108,6 +147,7 @@ function game(){
                             },500);
 
                         addMove();
+
 
                     }
                     }
