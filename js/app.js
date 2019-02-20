@@ -101,6 +101,25 @@ function gameOver(){
 
 }
 
+/**
+ * Update rating
+ * 5 stars rating: rating decreases every 10 moves and stays at one star if moves > 50
+ */
+function updateRating(){
+
+    if(moves==10){
+       document.querySelector('.stars').firstElementChild.remove();
+     }
+    if(moves==20){
+        document.querySelector('.stars').firstElementChild.remove();
+     }
+    if(moves==30){
+         document.querySelector('.stars').firstElementChild.remove();
+    }
+   if(moves==40){
+        document.querySelector('.stars').firstElementChild.remove();
+    }
+  }
 
 //initial game  function
 function game(){
@@ -136,7 +155,9 @@ function game(){
 
                         openCards = [];
                         addMove();
+                        updateRating();
                         gameOver();
+
                     }else {
                         //cards did not match
                         setTimeout(function(){
@@ -147,6 +168,7 @@ function game(){
                             },500);
 
                         addMove();
+                        updateRating();
 
 
                     }
